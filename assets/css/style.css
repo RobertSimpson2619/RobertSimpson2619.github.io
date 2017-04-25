@@ -1,0 +1,157 @@
+header{
+	background: #ffffff;
+	width: 100%;
+	height: 75px;
+	margin-bottom:15px;
+}
+#Name{
+	margin:0px;
+	width:50%;
+	height: 75px;
+	float: left;
+	text-align: center;
+	background-color: #4aaaa5;
+	background-clip: padding-box;
+	color: white;
+	text-transform: uppercase;
+	padding-top:15px;
+
+}
+#NavBar{
+	width:50%;
+	float:left;
+	text-align: center;
+	word-spacing:15px;
+	font-size: 25px;
+	margin-top:15px;
+}
+section{
+	width:100%;
+	height:500px;
+	margin-top: 0px;
+	margin-left:0px;
+	margin-right:0px;
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-bottom: solid #4aaaa5 5px;
+}
+.ContentArea{
+	float:left;
+	background-color:white;
+	z-index:1;
+	margin: 40px 30px 15px 100px;
+	width:40%;
+	height:450px;
+
+}
+.aboutme{
+	border-bottom: solid #dddddd 5px;
+	margin-left:15px;
+	margin-right:15px;
+	font-size:50px;
+	color: #4aaaa5;
+}
+.contactme{
+	border-bottom: solid #dddddd 5px;
+	margin-left:15px;
+	margin-right:15px;
+	margin-bottom:15px;
+	font-size:50px;
+	color:#4aaaa5;
+}
+.headshot{
+	float:left;
+	margin-left:15px;
+	margin-right:15px;
+	width:150px;
+	height:150px;
+}
+p{
+	margin-left:15px;
+	margin-right:15px;
+	max-height:90%;
+}
+.ExternalLinks{
+	float:right;
+	margin-top: 40px;
+	margin-right:250px;
+	background-color: #ffffff;
+	width:20%;
+	height:150px;
+}
+.Git{
+	height:50px;
+	width:50px;
+}
+.Linked{
+	height:50px;
+	width:50px;
+}
+.Stacked{
+	height:50px;
+	width:50px;
+}
+.worklinks{
+	margin-left: 15px;
+}
+#links{
+	border-bottom: solid #dddddd 3px;
+	margin-left:15px;
+	margin-right:15px;
+	color: #4aaaa5;
+}
+footer{
+	padding:25px;
+	background-color: #666666;
+	text-align: center;
+	color: #999999;
+}
+.input{
+	margin-left:15px;
+	margin-right:15px;
+	color: #777777;
+	margin-top:10px;
+	width:90%;
+	max-height:50px;
+	max-width:90%;
+}
+.message{
+	margin-left:15px;
+	margin-right:15px;
+	color: #777777;
+	margin-top:10px;
+	width:90%;
+}
+#submit{
+	margin-left:15px;
+	padding: 10px 30px 10px 30px;
+	margin-top:15px;
+	background-color:#4aaaa5;
+	border-color:#4aaaa5;
+	color: white;
+	font-size:18px;
+}
+.portfolio{
+	margin-left: 15px;
+	margin-right:15px;
+	font-size:50px;
+	border-bottom: solid #dddddd 5px;
+	color: #4aaaa5;
+}
+
+
+
+
+
+
+a{
+	color: #777777;
+}
+a:hover{
+	color: black;
+}
+body{
+	
+}
