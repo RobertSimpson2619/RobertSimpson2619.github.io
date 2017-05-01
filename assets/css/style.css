@@ -6,6 +6,12 @@
 .navbar .navbar-collapse{
 	text-align: center;
 }
+.always-centered-text{
+	text-align:center;
+}
+.top-margin{
+	margin-top:15px;
+}
 
 @media screen and (max-width: 992px) {
 
