@@ -1,119 +1,95 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
 
-	<head>
-	<title>Robert Simpson Portfolio</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-	</head>
+  <meta charset="UTF-8">
+  <title>Train Time</title>
 
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/solar/bootstrap.min.css" rel="stylesheet">
 
+</head>
 
+<body>
 
-	<body>
-	<div class="container">
-		<div class="row">
+<div class = "container">
 
-			<div class="col-md-6">
-			<h1 style="text-align:center; background: #4aaaae; color:white;padding: 25px 0px 25px 0px">Robert Simpson</h1>
-			</div>
-			<div class="col-md-3 col-md-offset-3">
+  <div class = "row">
 
-				<nav class="navbar navbar-default">
+    <div class = "jumbotron">
 
-				<div class="container-fluid text-center">
+      <h1 style= "text-align:center; color:white"> Train Time</h1>
+      <h3 style= "text-align:center; color:white">Your personal train scheduling application</h3>
 
+    </div>
 
-						<ul class="nav navbar-nav">
+    <div class = "panel panel-default">
+      <div class = "panel-heading">Current Train Schedule
+      </div>
+      <div class = "panel-body">
+        <table class = "table table-condensed">
+        <thead>
+          <tr>
+            <th>Train Name</th>
+            <th>Destination</th>
+            <th>Frequency(min)</th>
+            <th>Next Arrival</th>
+            <th>Minutes Away</th>
+          </tr>
+        </thead>
 
-       				 		<li><a href="index.html">About</a></li>
-        				    <li><a href="portfolio.html">Portfolio</a></li>
-       			 			<li><a href="contact.html">Contact</a></li>
+        <tbody id = "tableContent-Display">
+          
 
-       			 		</ul>
-			    </div>
-	</nav>
-			
-			</div>
-		</div>
+        </tbody>
 
-		<div class="row" style ="background-image: url('assets/images/background.jpg'); background-size:cover; background-repeat: no-repeat; background-position: center center;">
-			<div class="col-md-6 col-md-offset-1 phone-margin" style ="background: white; margin-top: 25px; margin-bottom: 25px; max-width: 100%;">
-			
-				<div class="col-md-4">
-					<h1 style="color: #4aaaae; border-bottom: solid 3px #777777; text-align: center;"> About Me</h1>
+        </table>
+      </div>
 
-					
-					<a href="index.html" class="thumbnail" style="margin-top: 25px">
+    </div>
 
-						<img src="assets/images/headshot.jpg" style="height:120px; width: 120px;">
-					</a>
+    <div class = "panel panel-default">
 
+      <div class = "panel-heading">Add Train</div>
 
-				</div>
+      <div class = "form-group">
+      <label for="name">Train Name</label>
+      <input type= "text" class = "form-control" id="trainName-Input">
+      </div>
 
+       <div class = "form-group">
+      <label for="name">Destination</label>
+      <input type= "text" class = "form-control" id="destination-Input">
+      </div>
 
-					<p  class="centered-text" style="margin-top:25px; text-indent:15px;">My name is Robert Simpson and I am currently the follow: Store Manager, Husband, and Student. I am the store manager at Gamestop in the North Park Mall. I am married to my lovely wife Vanessa and am studying to become a full-stack developer at SMU-Coding bootcamp.</p>
+       <div class = "form-group">
+      <label for="name">First Train Time(HH:mm - military time)</label>
+      <input type= "text" class = "form-control" id="trainTime-Input">
+      </div>
 
-					<p  class= "centered-text" style="text-indent:15px;">Some of my hobbys include: Ultimate Frisbee, Drumming, and watching netflix.</p>
+       <div class = "form-group">
+      <label for="name">Frequency (min)</label>
+      <input type= "text" class = "form-control" id="frequency-Input">
+      </div>
 
-					<p  class ="centerd-text" style="text-indent:15px;">My favorite personal achievement is that I went from a seasonal associate to a full-time store manager within 10 months with Gamestop.</p>
+      <button class = "btn btn-primary" id = "addTrain">Submit</button>
 
-					<p  class ="centered-text" style="text-indent:15px;">Experience with: HTML, CSS, Javascript</p>
-
-				
-
-					
-
-
-			</div>
-
-			<div class="col-md-3 col-md-offset-1" style ="background-color: white; margin-top: 25px;">
-
-				<h2 style="color: #4aaaae; border-bottom: 2px solid #777777; text-align: center;">Connect With Me</h2>
-
-				<div class="container text-center">
-				
-				<ul class="nav nav-pills pull-center">
-					<li><a href="#"><i class = "fa fa-linkedin fa-4x"></i></a></li>
-					<li><a href="#" style="color: #F7931E;"><i class= "fa fa-stack-overflow fa-4x"></i></a></li>
-					<li><a href ="#" style ="color: black;"><i class = "fa fa-github fa-4x"></i></a></li>
-
-				</ul>
-				</div>
-			</div>
-
-			<div class="col-md-1">
-			</div>
-
-		</div>
-
-		<div class="row">
-			<div class="col-md-12" style="background:#666666; text-align: center;">
-			<small style="color: #999999;">&copy; Copyright 2017 Robert Simpson</small>
-			</div>
-		</div>
-
-	</div>
+    </div>
 
 
-
-	</body>
-
+  </div>
 
 
+</div>
+
+  
+  <!-- JS Links -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src = "assets/javascript/app.js"></script>
 
 
-
-
-
-
-
-
-
-
-
+</body>
 
 </html>
