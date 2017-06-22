@@ -23,7 +23,7 @@ var instagramQueryUrl = "";
 var weatherQueryUrl = "";
 var APIKEY = "a219531e0ef0e795fcea4e7cc6b2e402";
 var searchLocation = "";
-var queryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=";
+var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
 var weatherApiKey = "&APPID=166a433c57516f51dfab1f7edaed8413";
 
 
