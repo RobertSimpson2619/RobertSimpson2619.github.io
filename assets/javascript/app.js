@@ -32,7 +32,7 @@ var emailInfo = "";
 
 var weatherForecastTime = "";
 var weatherDescription = "";
-var weatherHumidity = "";+
+var weatherHumidity = "";
 
 var weatherTemperature = "";
 var weatherWindSpeed = "";
@@ -77,11 +77,13 @@ $("#submitButton").on("click", function() {
 
 
     // Get OpenweatherAPI ajax call *************************************
-    $.ajax({
-        url: queryUrl,
-        method: "GET"
-    }).done(function(response) {
-        console.log(response);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", queryUrl, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4){
+            if(xhr.status == 200){
+                var response = (JSON.parse(xhr.responseText));
 
         minTemp = ((response.list[12].main.temp_min - 273.15) * 9 / 5) + 32;
         
@@ -120,9 +122,14 @@ $("#submitButton").on("click", function() {
 
 
         console.log(response.list[0]);
+            }else{
 
+            }
+        }
+    }
+    xhr.send();
 
-    });
+    
 
     $("#firstScreenDisplayed").hide();
     $("#secondScreenDisplayed").show();
