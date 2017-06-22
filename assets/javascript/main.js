@@ -24,7 +24,6 @@ var weatherIcon = "";
 
 database.ref().on("value", function(snapshot){
 	emailToSend = snapshot.val().email;
-
     weatherForecastTime = snapshot.val().weatherForecastTime;
     weatherDescription = snapshot.val().weatherDescription;
     weatherHumidity = snapshot.val().weatherHumidity;
@@ -34,13 +33,9 @@ database.ref().on("value", function(snapshot){
 
 
 	console.log(emailToSend);
-    console.log(weatherIcon);
-
-//     for ( var i = 0; i<10; i++){
-
-// }
+    console.log(weatherForecastTime);
+    
 	sendEmail();
-
 })
 
 
@@ -61,16 +56,7 @@ var mailOptions = {
     from: 'chillcast09@gmail.com',
     to: emailToSend,
     subject: 'Your Weather Forecast!',
-    text: 'That was easy!',
-    html: 
-    '<p> Forecast Date and Time: '+ weatherForecastTime + '</p>' + '<br>' +
-    '<p> Description: ' + weatherDescription + '</p>' + '<br>' +
-    '<p> Humidity: ' + weatherHumidity + '</p>' + '<br>' +
-    '<p> Temperature: ' + weatherTemperature + '<p>' + '<br>' +
-    '<p> Wind Speed: ' + weatherWindSpeed + '<p>' + '<br>'  +
-    "<img src ='" + weatherIcon +  "'style= 'width:100px'>"
-
-
+    text: 'That was easy!'
 };
 
 transporter.sendMail(mailOptions, function(error, info) {

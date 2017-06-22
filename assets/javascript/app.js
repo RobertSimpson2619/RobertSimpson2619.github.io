@@ -23,7 +23,7 @@ var instagramQueryUrl = "";
 var weatherQueryUrl = "";
 var APIKEY = "a219531e0ef0e795fcea4e7cc6b2e402";
 var searchLocation = "";
-var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
+var queryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=";
 var weatherApiKey = "&APPID=166a433c57516f51dfab1f7edaed8413";
 
 
@@ -89,7 +89,7 @@ $("#submitButton").on("click", function() {
         minTemp = "Min Temperature: " + Math.floor(minTemp) + " Degrees Farenheit";
        
 
-        weatherIcon = response.list[12].weather[0].icon;
+        weatherIcon = response.list[0].weather[0].icon;
 
 
         $("#displayedWeather").append("<p> Time: " + response.list[12].dt_txt + "</p>")
@@ -110,7 +110,7 @@ $("#submitButton").on("click", function() {
         weatherHumidity = response.list[12].main.humidity;
         weatherTemperature = minTemp;
         weatherWindSpeed = response.list[12].wind.speed;
-        
+        weatherIcon = 'http://openweathermap.org/img/w/' + weatherIcon + '.png';
 
         console.log(weatherIcon);
 
