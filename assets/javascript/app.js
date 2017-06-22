@@ -1,146 +1,163 @@
-// initialize firebase
-
+// Initialize Firebase
+//*******************************************************************
 var config = {
-      apiKey: "AIzaSyC7k5orn72raCsECSpgRKxDPadMmaqJ1-E",
-      authDomain: "fir-recent-user-push-4a3ad.firebaseapp.com",
-      databaseURL: "https://employeedata-118ff.firebaseio.com/",
-      projectId: "fir-recent-user-push-4a3ad",
-      storageBucket: "fir-recent-user-push-4a3ad.appspot.com",
-      messagingSenderId: "572750486144"
-    };
-
+    apiKey: "AIzaSyA-UTuYnXUX7QCfBQWJpuo0gabZIC7Fyp8",
+    authDomain: "chillcast-c8bde.firebaseapp.com",
+    databaseURL: "https://chillcast-c8bde.firebaseio.com",
+    projectId: "chillcast-c8bde",
+    storageBucket: "chillcast-c8bde.appspot.com",
+    messagingSenderId: "655987963065"
+};
 firebase.initializeApp(config);
 
 var database = firebase.database();
 
 
-var trainName = "";
-var destination = "";
-var originalTime = "";
-var frequency = 0;
-var nextArrival = "";
-var minutesAway = 0;
+
+// Initial Variables
+//*******************************************************************
+var minTemp = 0;
+var maxTemp = 0;
+var weatherIcon = "";
+var instagramQueryUrl = "";
+var weatherQueryUrl = "";
+var APIKEY = "a219531e0ef0e795fcea4e7cc6b2e402";
+var searchLocation = "";
+var queryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=";
+var weatherApiKey = "&APPID=166a433c57516f51dfab1f7edaed8413";
 
 
-$("#addTrain").on("click", function (event){
-	event.preventDefault();
+var emailInfo = "";
 
-	trainName = $("#trainName-Input").val().trim();
-	destination = $("#destination-Input").val().trim();
-	originalTime = $("#trainTime-Input").val().trim();
-	frequency = $("#frequency-Input").val().trim();
+var weatherForecastTime = "";
+var weatherDescription = "";
+var weatherHumidity = "";
+var weatherTemperature = "";
+var weatherWindSpeed = "";
+var weatherIcon = "";
 
-	console.log(originalTime);
 
-	database.ref().push({
-		trainName: trainName,
-		destination: destination,
-		originalTime: originalTime,
-		frequency: frequency
-	});
+
+
+
+//Html clicks
+//**********************t***********************************************
+
+$("#emailSubmit").on("click", function(){
+
+  emailInfo = $("#emailInput").val().trim();
+
+  database.ref().set({
+    email: emailInfo,
+    weatherForecastTime: weatherForecastTime,
+    weatherDescription: weatherDescription,
+    weatherHumidity: weatherHumidity,
+    weatherTemperature: weatherTemperature,
+    weatherWindSpeed: weatherWindSpeed,
+    weatherIcon: weatherIcon
+  })
+
 });
 
-database.ref().on("child_added",function(childSnapshot){
-	// this is where we will append data and calculate minutesaway and nextx arrival time
-	
-	var trainDepartureTime = moment().format("MMMM Do YYYY, " + childSnapshot.val().originalTime + " a");
-		console.log(trainDepartureTime);
+
+$("#submitButton").on("click", function() {
+
+    searchLocation = $("#initialInput").val().trim();
+    queryUrl = queryUrl + searchLocation + weatherApiKey;
+
+
+    // GET Call to Flickr **********************************************
+    $.get({
+        url: 'https://api.flickr.com/services/feeds/photos_public.gne',
+        dataType: 'jsonp',
+        data: { "tags": searchLocation, "format": "json" }
+    });
+
+
+    // Get OpenweatherAPI ajax call *************************************
+    $.ajax({
+        url: queryUrl,
+        method: "GET"
+    }).done(function(response) {
+        console.log(response);
+
+        minTemp = ((response.list[12].main.temp_min - 273.15) * 9 / 5) + 32;
+        
+
+
+        //replace Degrees Farenheit with icon later?
+        minTemp = "Min Temperature: " + Math.floor(minTemp) + " Degrees Farenheit";
+       
+
+        weatherIcon = response.list[12].weather[0].icon;
+
+
+        $("#displayedWeather").append("<p> Time: " + response.list[12].dt_txt + "</p>")
+
+        .append("<p> Decription: " + response.list[12].weather[0].description + "</p>")
+
+        .append("<p>" + "Humidity: " + response.list[12].main.humidity + " % </p>")
+
+        .append("<p>" + minTemp + "</p>")
+
+        .append("<p> Wind Speed " + response.list[12].wind.speed + "MPH </p>")
+
+        .append("<img src = 'http://openweathermap.org/img/w/" + weatherIcon + ".png' style = 'width:100px'>")
+
+        //    testing   
+        weatherForecastTime =  response.list[12].dt_txt;
+        weatherDescription = response.list[12].weather[0].description;
+        weatherHumidity = response.list[12].main.humidity;
+        weatherTemperature = minTemp;
+        weatherWindSpeed = response.list[12].wind.speed;
+        
+
+        console.log(weatherIcon);
 
 
 
-	var a = childSnapshot.val().originalTime;
-	var b = moment().format("HHmm");
 
-	
-	
-	
-
-	
-    var firstdigit = (''+a)[0];
-	var seconddigit = (''+a)[1];
-	var thirddigit = (''+a)[2];
-	var fourthdigit = (''+a)[3];
-
-	var bfirstdigit = (''+b)[0];
-	var bseconddigit = (''+b)[1];
-	var bthirddigit = (''+b)[2];
-	var bfourthdigit = (''+b)[3];
+        console.log(response.list[0]);
 
 
+    });
 
-	
-
-	var addedMinutes = thirddigit + fourthdigit;
-	addedMinutes = parseInt(addedMinutes);
-
-	
-
-
-	var baddedMinutes = bthirddigit + bfourthdigit;
-	baddedMinutes = parseInt(baddedMinutes);
-
-	
-		
-
-	var addeddigit = firstdigit + seconddigit;
-	var toMinutes = addeddigit * 60;
-
-	
-
-
-	var baddeddigit = bfirstdigit + bseconddigit
-	var btoMinutes = baddeddigit * 60;
-
-	
-
-
-	var totalMinutesA = addedMinutes + toMinutes;
-	var totalMinutesB = baddedMinutes + btoMinutes;
-
-	var absouluteMinutes = totalMinutesB - totalMinutesA;
-
-
-	
-
-	var minutes = absouluteMinutes % 60;
-	console.log(minutes);
-
-	minutes = minutes % childSnapshot.val().frequency;
-	console.log(minutes);
-
-	minutesAway = childSnapshot.val().frequency - minutes;
-
-	nextArrival = new moment().add(minutesAway, 'minutes').format("hh:mm a");
-
-
-	
-
-
-
-	$("#tableContent-Display").append("<tr><td>" + childSnapshot.val().trainName + "</td><td>" 
-		+ childSnapshot.val().destination + "</td><td>" +  childSnapshot.val().frequency + "</td><td>"
-		+ nextArrival + "</td><td>" +  minutesAway +  "</td></tr>" );
-})
-
-database.ref().on("value", function(snapshot){
-
-
-	if(snapshot == undefined){
-		database-ref().push({
-			trainName: trainName,
-			destination: destination,
-			originalTime: originalTime,
-			frequency: frequency
-		});
-	}
-	else{
-		var sv = snapshot.val();
-		var svArr = Object.keys(sv);
-		var lastIndex = svArr.length -1; 
-		var lastKey = svArr[lastIndex];
-		var lastObj = sv[lastKey];
-
-	}
-}, function(errorObject){
-	console.log("Errors Handled: " + errorObject.code);
+    $("#firstScreenDisplayed").hide();
+    $("#secondScreenDisplayed").show();
 });
+
+
+
+
+
+
+// Prevent Numbers from being entered into the field. 
+
+var number = document.getElementById('initialInput');
+
+number.onkeydown = function(e) {
+
+    if (e.keyCode > 47 && e.keyCode < 58) {
+        return false;
+    } else if (e.keyCode > 95 && e.keyCode < 106) {
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+function jsonFlickrFeed(json) {
+    console.log(json);
+
+
+
+    $.each(json.items, function(i, item) {
+        $("<img />").attr("src", item.media.m).appendTo("#displayedImages");
+    });
+};
