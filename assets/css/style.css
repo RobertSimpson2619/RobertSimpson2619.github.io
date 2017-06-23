@@ -1,5 +1,71 @@
-#displayedWeather{
-	background: #E0FFFF;
-	font-size: 36px;
+.navbar, .jumbotron {
+    margin-bottom: 0;
 }
 
+.navbar {
+    border-radius: 0;
+    background: none;
+}
+
+.navbar .nav > li > a {
+    color: #888888;
+}
+
+.navbar-default .navbar-brand {
+    color: #888888;
+    padding-left: 50px;
+}
+
+.jumbotron {
+    border-radius: 0;
+    
+    color: #FFF;
+    height: 520px;
+}
+
+/***********************
+  OUTLINE BUTTONS
+************************/
+
+.btn.outline {
+    background: none;
+    padding: 12px 22px;
+}
+.btn-primary.outline {
+    border: 2px solid #FFF;
+    color: #FFF;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #777777;
+    background-color: #FFF;
+}
+
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #FFF;
+    color: #FFF;
+    box-shadow: none;
+}
+
+/***********************
+  CUSTOM BTN VALUES
+************************/
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.sharp {
+    border-radius: 0;
+}
+.jumbotron > .container {
+   position: relative;
+   top: 50%;
+   transform: translateY(-50%);
+}
