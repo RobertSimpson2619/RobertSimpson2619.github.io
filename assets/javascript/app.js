@@ -36,6 +36,8 @@ $("#submitButton").on("click", function(){
 	emailInput = $("#emailInput").val().trim();
 	commentInput = $("#commentInput").val().trim();
 
+    alert("Thank you! Your Message has been sent!");
+
 
 	database.ref().set({
     name: nameInput,
